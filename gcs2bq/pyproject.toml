@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gcs2bq"  # Nome do seu pacote
+version = "0.0.0"
+description = "Biblioteca para mover dados entre o Google Cloud Storage (GCS) e o BigQuery"
+authors = [
+    { name = "Seu Nome", email = "seu_email@dominio.com" }
+]
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = [
+    "google-cloud-storage>=2.0.0",  # Adiciona a dependência para o GCS
+    "google-cloud-bigquery>=3.0.0",  # Adiciona a dependência para o BigQuery
+    "google-auth>=2.0.0",  # Dependência para autenticação
+]
+keywords = ["gcs", "bigquery", "cloud", "data-transfer", "google-cloud"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.6"
+
