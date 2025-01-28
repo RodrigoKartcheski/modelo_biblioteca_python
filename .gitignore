@@ -1,0 +1,32 @@
+# Ambiente virtual
+venv/
+.Venv/
+ENV/
+env/
+.virtualenv/
+.venv/
+
+# Arquivos e pastas gerados automaticamente
+__pycache__/
+*.py[cod]
+*.so
+
+# Configurações de IDEs
+.idea/
+.vscode/
+*.swp
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.bak
+*.old
+
+# Arquivos de compilação
+build/
+dist/
+*.egg-info/
+
+# Outros
+.DS_Store
+Thumbs.db

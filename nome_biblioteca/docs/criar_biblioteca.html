@@ -1,0 +1,148 @@
+Passo 1: criar a estrutura das pastas
+
+Criar a estrutura de uma biblioteca Python é o primeiro passo para organizar e reutilizar seu código. Para te ajudar a prosseguir e garantir que você tenha uma estrutura robusta e funcional, vou detalhar os próximos passos e algumas boas práticas.
+
+Estrutura básica recomendada:
+
+A estrutura mais comum e recomendada para uma biblioteca Python é a seguinte:
+
+nome_da_biblioteca/
+├── nome_da_biblioteca/       # Pacote principal da biblioteca
+│   ├── __init__.py           # Inicializa o pacote
+│   ├── modulo1.py            # Módulos com as funcionalidades
+│   ├── modulo2.py
+│   └── subpacote/          # Subpacotes (opcional)
+│       ├── __init__.py
+│       └── submodulo.py
+├── tests/                    # Testes unitários (essencial)
+│   ├── __init__.py
+│   ├── test_modulo1.py
+│   └── test_submodulo.py
+├── README.md                 # Descrição da biblioteca
+├── LICENSE                   # Licença de uso (ex: MIT, GPL)
+├── setup.py                  # Script de instalação
+└── pyproject.toml            # Configuração do projeto (recomendado)
+Explicando os arquivos e diretórios:
+
+nome_da_biblioteca/ (diretório raiz): Contém todos os arquivos da sua biblioteca.
+nome_da_biblioteca/ (pacote): Diretório com o mesmo nome da biblioteca, que contém o código principal.
+__init__.py: Arquivo obrigatório que indica que o diretório é um pacote Python. Pode estar vazio ou conter código de inicialização.
+modulo1.py, modulo2.py: Arquivos com as funções, classes e outros componentes da sua biblioteca.
+subpacote/: Subdivisões lógicas da biblioteca para melhor organização (opcional).
+tests/: Diretório para os testes unitários, que garantem o funcionamento correto do código.
+test_modulo1.py: Arquivos com os testes para cada módulo correspondente.
+README.md: Documento em Markdown com a descrição da biblioteca, instruções de instalação e exemplos de uso.
+LICENSE: Arquivo com a licença de uso da sua biblioteca. É crucial definir uma licença.
+setup.py: Script Python usado para construir, empacotar e instalar a biblioteca.
+pyproject.toml: Arquivo de configuração que define as dependências e outras configurações do projeto, mais moderno e recomendado que o setup.py para gerenciamento de build.
+Próximos passos:
+
+Escrever o código da biblioteca: Implemente as funcionalidades nos módulos (modulo1.py, modulo2.py, etc.).
+Escrever os testes unitários: Crie testes para cada função e classe para garantir a qualidade do código. Use um framework de testes como o pytest.
+Documentar a biblioteca: Escreva um bom README.md com exemplos de uso e uma descrição clara da biblioteca.
+Criar o setup.py (ou usar pyproject.toml com build): Configure o script de instalação para que outros possam instalar sua biblioteca facilmente.
+Escolher uma licença: Defina uma licença de uso para sua biblioteca (ex: MIT, GPL).
+Publicar a biblioteca (opcional): Se quiser compartilhar sua biblioteca com o mundo, publique-a no PyPI (Python Package Index).
+Exemplo de setup.py:
+
+Python
+
+from setuptools import setup, find_packages
+
+setup(
+    name='nome_da_biblioteca',
+    version='0.1.0',
+    packages=find_packages(),
+    install_requires=[
+        # Lista de dependências
+    ],
+    author='Seu Nome',
+    author_email='seu@email.com',
+    description='Descrição da sua biblioteca',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
+    url='URL do seu repositório (ex: GitHub)',
+    classifiers=[
+        # Classificadores do PyPI
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+    ],
+)
+Exemplo de pyproject.toml (recomendado):
+
+Ini, TOML
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nome_da_biblioteca"
+version = "0.1.0"
+authors = [{ name = "Seu Nome", email = "seu@email.com" }]
+description = "Descrição da sua biblioteca"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    # Lista de dependências
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+Seguindo esses passos, você terá uma biblioteca Python bem estruturada e pronta para ser usada e compartilhada. Lembre-se que a consistência e a boa documentação são cruciais para o sucesso da sua biblioteca.
+
+
+
+
+
+
+Para evitar chamar "from nome_da_biblioteca.main import ConcatenadorDeColunas"
+from .main import ConcatenadorDeColunas
+
+Passo 1: Ajuste o __init__.py do seu pacote
+No arquivo __init__.py do seu pacote (nome_da_biblioteca), você pode importar a classe ConcatenadorDeColunas do módulo main para que ela seja acessível diretamente ao importar o pacote.
+
+nome_da_biblioteca/__init__.py
+python
+Copiar
+Editar
+from .main import ConcatenadorDeColunas
+Passo 2: Ajuste a importação
+Agora, ao importar nome_da_biblioteca, você pode acessar ConcatenadorDeColunas diretamente, sem precisar escrever .main.
+
+Exemplo de uso:
+python
+Copiar
+Editar
+from nome_da_biblioteca import ConcatenadorDeColunas
+import pandas as pd
+
+df = pd.DataFrame({
+    'col1': ['A', 'B', 'C'],
+    'col2': ['1', '2', '3']
+})
+
+concatenador = ConcatenadorDeColunas(df)
+resultado = concatenador.concatena('col1', 'col2', separador="-")
+print(resultado)
+Como isso funciona:
+O arquivo __init__.py serve como uma interface do seu pacote. Ao adicionar from .main import ConcatenadorDeColunas dentro do __init__.py, você está expondo a classe ConcatenadorDeColunas diretamente.
+Isso permite que os usuários do seu pacote importem ConcatenadorDeColunas diretamente de nome_da_biblioteca, sem precisar especificar o módulo main.
+Passo 3: Instale o pacote novamente (se necessário)
+Após fazer essa modificação, você pode precisar reinstalar o pacote no seu ambiente virtual para garantir que a estrutura de importação funcione corretamente:
+
+bash
+Copiar
+Editar
+pip install -e .
+Agora, ao importar ConcatenadorDeColunas, a importação será mais limpa e direta:
+
+python
+Copiar
+Editar
+from nome_da_biblioteca import ConcatenadorDeColunas
+Isso deve atender ao seu objetivo de simplificar a importação e evitar escrever .main.

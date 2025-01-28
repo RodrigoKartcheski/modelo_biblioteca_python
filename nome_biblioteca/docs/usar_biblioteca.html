@@ -1,0 +1,41 @@
+Sua biblioteca foi publicada com sucesso no Test PyPI. Agora você pode instalá-la e utilizá-la em outros projetos para validar o funcionamento. Aqui está o passo a passo:
+
+1. Instale a biblioteca do Test PyPI
+Antes de instalar, certifique-se de estar em um ambiente virtual (recomendado). Depois, use o seguinte comando:
+
+bash
+Copiar código
+pip install -i https://test.pypi.org/simple/ nome-da-biblioteca==0.1.0
+O -i https://test.pypi.org/simple/ instrui o pip a procurar o pacote no Test PyPI.
+Substitua nome-da-biblioteca pelo nome real do seu pacote (caso tenha modificado no setup.py ou pyproject.toml).
+2. Verifique a instalação
+Após instalar, você pode verificar se o pacote foi instalado corretamente listando os pacotes instalados:
+
+bash
+Copiar código
+pip list
+Procure por nome-da-biblioteca na lista.
+
+3. Utilize a biblioteca
+Agora, importe e utilize sua biblioteca em um script Python. Por exemplo:
+
+python
+Copiar código
+import nome_da_biblioteca
+
+# Supondo que sua biblioteca tenha a função 'concatenar_colunas'
+from nome_da_biblioteca.modulo1 import concatenar_colunas
+
+import pandas as pd
+
+# Testando a função
+df = pd.DataFrame({"col1": ["A", "B"], "col2": ["C", "D"]})
+df_resultado = concatenar_colunas(df, "col1", "col2")
+print(df_resultado)
+4. Publicação no PyPI oficial
+Se tudo estiver funcionando bem no Test PyPI, você pode publicar no PyPI oficial para que outras pessoas possam usar sua biblioteca diretamente. Use o comando abaixo para isso:
+
+bash
+Copiar código
+twine upload dist/* --repository pypi
+Lembre-se de usar suas credenciais do PyPI oficial.

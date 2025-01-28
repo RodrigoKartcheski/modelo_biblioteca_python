@@ -1,0 +1,79 @@
+Subir uma biblioteca para o Test PyPI é uma ótima maneira de testar a distribuição antes de publicar oficialmente no PyPI (Python Package Index). Aqui está o passo a passo completo:
+
+1. Pré-requisitos
+Certifique-se de que você tenha o twine instalado:
+
+O twine é a ferramenta usada para fazer upload de pacotes para o PyPI/Test PyPI.
+
+bash
+Copiar código
+pip install twine
+Crie uma conta no Test PyPI:
+
+Acesse https://test.pypi.org/account/register/ e crie uma conta.
+Guarde seu nome de usuário e senha.
+Organize o projeto: Certifique-se de que sua biblioteca contém:
+
+setup.py
+pyproject.toml (opcional, mas recomendado)
+Código organizado no diretório principal da biblioteca.
+README.md (com formato Markdown ou reStructuredText para documentação).
+2. Prepare o pacote
+Instale a ferramenta build (se ainda não estiver instalada):
+
+bash
+Copiar código
+pip install build
+Crie o pacote distribuível:
+
+No diretório raiz do projeto (onde está o setup.py), rode:
+
+bash
+Copiar código
+python -m build
+Isso cria dois arquivos na pasta dist/:
+
+Um arquivo .tar.gz (Source Distribution - sdist).
+Um arquivo .whl (Wheel Distribution - bdist_wheel).
+3. Teste o pacote localmente (opcional)
+Antes de subir para o Test PyPI, você pode instalar o pacote gerado localmente para verificar se ele funciona:
+
+bash
+Copiar código
+pip install dist/seu_pacote-0.1.0-py3-none-any.whl
+Substitua seu_pacote-0.1.0-py3-none-any.whl pelo nome do arquivo gerado.
+
+4. Fazer upload para o Test PyPI
+Autentique-se no Test PyPI e envie o pacote:
+
+Rode o comando abaixo no terminal:
+
+bash
+Copiar código
+twine upload --repository testpypi dist/*
+Informe seu nome de usuário e senha:
+
+Use as credenciais criadas em Test PyPI.
+5. Instale a biblioteca do Test PyPI
+Depois de subir o pacote, você pode instalá-lo diretamente do Test PyPI para verificar se está funcionando:
+
+bash
+Copiar código
+pip install --index-url https://test.pypi.org/simple/ seu-pacote
+6. Valide a instalação
+Após a instalação, teste se a biblioteca funciona corretamente importando-a no Python:
+
+python
+Copiar código
+from nome_da_biblioteca import Modulo1
+
+# Teste a funcionalidade
+df = Modulo1.concat_columns(df, 'coluna1', 'coluna2', 'nova_coluna')
+7. Próximo passo: Publicar no PyPI oficial
+Se tudo estiver funcionando corretamente no Test PyPI, você pode repetir o processo para o PyPI oficial com o comando:
+
+bash
+Copiar código
+twine upload dist/*
+Você precisará de uma conta em https://pypi.org/.
+
