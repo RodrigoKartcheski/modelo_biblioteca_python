@@ -1,1 +1,1 @@
-from .main import ConcatenadorDeColunas
+from .main import LoadXlsxToBigQuery
