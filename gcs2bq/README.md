@@ -29,6 +29,30 @@ processor = LoadXlsxToBigQuery(
 
 print(processor.process_data())
 
+############################################################################################################################
+
+from gcs2bq import GcsToDataFrame, BigQueryLoader
+
+# Defina os parâmetros necessários
+project_id = "dataplex-experience-6133"
+#
+bucket_name = "bucket-6133-20241008_2"
+bucket_folder = "folder"
+sheet_name = "sua-aba"
+#
+dataset_id = "data_conjunto"
+table_id = "table_id"
+unique_key_columns = ["Concessao"]
+
+# Carregar os dados do GCS usando a classe GcsToDataFrame
+gcs_loader = GcsToDataFrame(project_id, bucket_name, bucket_folder, sheet_name)
+dataframe = gcs_loader.load_all_excel_from_folder()
+
+# Chamar a classe BigQueryLoader e carregar os dados no BigQuery
+bq_loader = BigQueryLoader(project_id, dataset_id, table_id, unique_key_columns)
+bq_loader.upsert_to_bigquery(dataframe)
+
+
 
 ############################################################################################################################
 # Obrigatorio para usar o pacote
