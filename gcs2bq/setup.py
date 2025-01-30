@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gcs2bq',  # Nome do seu pacote
-    version='0.0.11',
+    version='0.0.18',
     description='Biblioteca para mover dados entre o Google Cloud Storage (GCS) e o BigQuery',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -19,6 +19,7 @@ setup(
         'google-cloud-storage>=2.0.0',  # GCS
         'google-cloud-bigquery>=3.0.0',  # BigQuery
         'google-auth>=2.0.0',  # Autenticação
+        'xlsxwriter==3.0.3', # manipular arquivos do formato .xlsx
     ],
     classifiers=[
         'Programming Language :: Python :: 3',
