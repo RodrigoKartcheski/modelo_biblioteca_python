@@ -5,5 +5,7 @@
 # Importação corrigida para garantir que GcsToDataFrame seja carregada corretamente.
 from .bq_dataframe_loader import BigQueryLoader
 from .gcs_xlsx_to_dataframe_reader import GcsToDataFrame
+from .gcs_parquet_to_dataframe_reader import GcsParquetToDataFrame
 from .gcs_dataframe_to_xlsx_loader import DataFrameToXlsx
+from .gcs_dataframe_to_parquet_loader import DataFrameToParquet
 
