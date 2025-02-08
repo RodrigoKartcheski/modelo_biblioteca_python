@@ -2,5 +2,7 @@ google-cloud-storage==2.19.0
 google-cloud-bigquery==3.29.0
 db-dtypes==1.4.0
 pandas==2.2.3
+pyarrow  # Recomendado para desempenho
+google-cloud-bigquery[pandas]==3.29.0
 xlsxwriter==3.0.3
 openpyxl==3.1.5

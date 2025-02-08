@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='gcs2bq',  # Nome do seu pacote
-    version='0.0.18',
+    version='0.0.48',
     description='Biblioteca para mover dados entre o Google Cloud Storage (GCS) e o BigQuery',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     author='Seu Nome',
-    author_email='seu_email@dominio.com',
+    author_email='rodrigo.kartcheski@gmail.com',
     url='https://github.com/seu_usuario/gcs2bq',  # Atualize com o link do repositório
     packages=find_packages(),  # Encontrar pacotes automaticamente
     entry_points={
